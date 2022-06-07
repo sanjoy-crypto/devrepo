@@ -10,8 +10,10 @@ from .utils import *
 
 def Projects(request):
     projects, search_query = searchProject(request)
+    custom_range, projects = paginateProjects(request, projects, 3)
 
-    context = {'projects': projects, 'search_query': search_query}
+    context = {'projects': projects,
+               'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'projects/projects.html', context)
 
 
